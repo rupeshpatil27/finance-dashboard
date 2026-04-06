@@ -14,7 +14,7 @@ export const Header = () => {
         <div className="w-full flex items-center justify-between mb-12">
           <HeaderLogo />
 
-          <div className="hidden lg:flex flex-1 justify-center">
+          <div className="lg:flex flex-1 justify-center">
             <Navigation />
           </div>
 
