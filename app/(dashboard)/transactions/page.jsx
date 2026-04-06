@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { toast } from "sonner";
 import { FileDown, Loader2, Plug } from "lucide-react";
 import { DataTable } from "@/components/DataTable";
@@ -32,7 +32,7 @@ const INITIAL_IMPORT_RESULTS = {
   meta: {},
 };
 
-const TransactionsPage = () => {
+const TransactionsContent = () => {
   const [AccountDialog, confirm] = useSelectAccount();
   const { role } = useRole();
   const isViewer = role === "viewer";
@@ -192,4 +192,16 @@ const TransactionsPage = () => {
   );
 };
 
-export default TransactionsPage;
+export default function TransactionsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24 flex justify-center items-center h-125">
+          <Loader2 className="size-8 text-blue-500 animate-spin" />
+        </div>
+      }
+    >
+      <TransactionsContent />
+    </Suspense>
+  );
+}

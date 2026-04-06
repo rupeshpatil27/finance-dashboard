@@ -11,8 +11,9 @@ import { useBulkDeleteAccounts } from "@/features/accounts/api/use-bulk-delete-a
 import { columns } from "./columns";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRole } from "@/features/role/hooks/use-role";
+import { Suspense } from "react";
 
-const AccountsPage = () => {
+const AccountsContent = () => {
   const newAccount = useNewAccount();
   const accountsQuery = useGetAccounts();
   const deleteAccounts = useBulkDeleteAccounts();
@@ -69,4 +70,17 @@ const AccountsPage = () => {
   );
 };
 
-export default AccountsPage;
+
+export default function AccountsPage() {
+  return (
+    <Suspense 
+      fallback={
+        <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24 flex justify-center items-center h-125">
+          <Loader2 className="size-8 text-blue-500 animate-spin" />
+        </div>
+      }
+    >
+      <AccountsContent />
+    </Suspense>
+  );
+}

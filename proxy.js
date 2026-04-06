@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isProtectedRoute = createRouteMatcher(["/"]);
+const isProtectedRoute = createRouteMatcher(["/","/accounts","/categories","/transactions"]);
 
 export default clerkMiddleware(async (auth, request) => {
   // 2. Protect everything except public routes

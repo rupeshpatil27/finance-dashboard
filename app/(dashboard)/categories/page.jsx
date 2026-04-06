@@ -12,8 +12,9 @@ import { useBulkDeleteCategories } from "@/features/categories/api/use-bulk-dele
 
 import { columns } from "./columns";
 import { useRole } from "@/features/role/hooks/use-role";
+import { Suspense } from "react";
 
-const CategoriesPage = () => {
+const CategoriesContent = () => {
   const newCategory = useNewCategory();
   const categoriesQuery = useGetCategories();
   const deleteCategories = useBulkDeleteCategories();
@@ -72,4 +73,16 @@ const CategoriesPage = () => {
   );
 };
 
-export default CategoriesPage;
+export default function CategoriesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24 flex justify-center items-center h-125">
+          <Loader2 className="size-8 text-blue-500 animate-spin" />
+        </div>
+      }
+    >
+      <CategoriesContent />
+    </Suspense>
+  );
+}
