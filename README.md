@@ -1,16 +1,10 @@
 # 📊 Finance Dashboard
 
 ## 🔗 Live Link
+
 [**View Live Application**](https://finance-dashboard-nine-snowy.vercel.app/)
 
-This project is a submission for the Frontend Developer assignment. It demonstrates clean UI design, robust state management, and full-stack capabilities by building a comprehensive personal finance dashboard.
-
----
-
-### 🔑 Demo Access (Quick Login)
-Want to jump straight in without creating an account? Use these test credentials to explore a fully populated dashboard and test the simulated Role-Based Access Control (Admin vs. Viewer):
-* **Email:** `test1@gmail.com`
-* **Password:** `test1@user`
+FinTrack AI is a modern, full-stack personal finance dashboard designed to help users track expenses, visualize spending habits, and manage their cash flow. It features a robust interactive data grid, dynamic data visualizations, and Role-Based Access Control (RBAC).
 
 ---
 
@@ -37,40 +31,12 @@ Want to jump straight in without creating an account? Use these test credentials
 
 ---
 
-## 🧠 Overview of Approach
+## ✨ Features
 
-While the assignment permitted the use of mock data and a pure frontend setup, I chose to build a **fully functional full-stack application** to demonstrate production-ready engineering practices.
-
-- **Architecture:** The application uses **Next.js (App Router)** for the frontend, communicating with a custom Edge-compatible API built with **Hono.js**. Data is persisted in a serverless **Neon PostgreSQL** database via **Drizzle ORM**.
-- **State Management:** I used a hybrid approach rather than a single global store:
-  - **Server State:** **TanStack React Query** handles all API fetching, caching, and optimistic UI updates, keeping the UI perfectly in sync with the database without complex `useEffect` logic.
-  - **Client/UI State:** **Zustand** manages lightweight local state, such as sheet/modal visibility and the simulated Role-Based Access Control (RBAC).
-  - **URL State:** Data filters (date ranges, account selections) are stored directly in the URL parameters. This makes the dashboard state shareable and bookmarkable.
-
----
-
-## ✨ Explanation of Features
-
-### Core Requirements
-
-- **1. Dashboard Overview:** \* Features top-level summary cards for Total Remaining, Income, and Expenses.
-  - Includes a highly dynamic charting system: users can toggle the time-based visualization between Area, Line, and Bar charts, and toggle the categorical visualization between Pie, Radar, and Radial charts.
-- **2. Transactions Section:** \* A robust, interactive data grid built with TanStack Table.
-  - Displays Date, Payee, Category, and Amount. Amounts dynamically render with Primary (Income) or Destructive (Expense) badges.
-  - Includes column sorting and a search/filter interface.
-- **3. Basic Role-Based UI (RBAC Simulation):** \* As per the assignment guidelines, RBAC is simulated entirely on the client side without backend enforcement.
-  - I created a `useRole` Zustand store. Users can toggle between **"Admin"** and **"Viewer"** using the dropdown in the top navigation bar.
-  - When set to "Viewer", the UI automatically adapts to a read-only state by dynamically disabling or hiding the "Add New", "Import", "Edit", and "Delete" actions across the dashboard.
-- **4. Insights Section:** \* A dynamic grid that analyzes the currently filtered dataset to provide actionable observations.
-  - Calculates the **Highest Spending Category**, the user's **Savings Rate** (Remaining / Income), and a **Cash Flow Status** warning if expenses exceed income for the period.
-
-### Optional Enhancements Included
-
-- **CSV Import/Export Tool:** Built a drag-and-drop CSV import feature using `react-papaparse` that includes an interactive table for users to map CSV columns to the database schema. alongside a custom export button for seamless data backups.
-- **Data Persistence & Real API:** Full backend integration with PostgreSQL, ensuring data persists across sessions.
-- **Clean UI/UX:** Built with Tailwind CSS and Shadcn UI. Features loading skeletons to prevent layout shift, empty states for missing data, and a fully responsive mobile-sheet navigation menu.
-
----
+- **Interactive Data Visualizations:** Dynamic charting system toggling between Area, Line, and Bar charts for trends, and Pie, Radar, and Radial charts for category breakdowns.
+- **Smart Insights:** Automatically calculates the highest spending category, savings rate, and overall cash-flow health based on the selected date range.
+- **Advanced Transactions Grid:** Includes column sorting, date filtering, and visual badges for income/expense tracking.
+- **CSV Bulk Import:** A drag-and-drop file uploader that parses CSV data and maps it directly to the database schema.
 
 ## 🛠️ Tech Stack
 
